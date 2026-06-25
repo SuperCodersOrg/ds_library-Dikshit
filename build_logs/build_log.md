@@ -20,7 +20,6 @@ Completed the design decisions, API planning, and memory management explanation.
 
 ---
 
-# Build Log
 
 ## Entry 2
 
@@ -56,13 +55,12 @@ Successfully reorganized the project documentation into three independent design
 ---
 
 
-# Build Log
 
 ## Entry 3
 
 **Date:** June 24, 2026
 
-**Duration:** 4 Hours
+**Duration:** 1 Hours
 
 **Goal:**
 Implement the core memory management functionality of the DynamicArray, including object construction, destruction, copying, and assignment.
@@ -90,5 +88,42 @@ Successfully implemented the Rule of Three for DynamicArray:
 * Copy Assignment Operator
 
 The DynamicArray now supports independent copies of objects without shared ownership issues. Memory is released correctly, and copied arrays maintain their own storage, preventing double deletion and dangling pointer problems.
+
+---
+
+
+## Entry 4
+
+**Date:** June 24, 2026
+
+**Duration:** 1 Hours
+
+**Goal:**
+Implement the core DynamicArray operations including append, insert, remove, and automatic resizing.
+
+**Problem Encountered:**
+Managing element movement during insertion and deletion required careful handling to avoid overwriting existing values. Resizing the array also required copying existing elements into a larger memory block while preserving data integrity.
+
+**What I Tried:**
+
+* Implemented the `append()` method to add elements to the end of the array.
+* Added automatic capacity checking before insertion.
+* Implemented the `resize()` function using a capacity doubling strategy.
+* Copied existing elements into the new memory block during resizing.
+* Implemented the `insert()` method by shifting elements to the right before placing the new value.
+* Implemented the `remove()` method by shifting elements to the left after deletion.
+* Added index validation to prevent out-of-range access during insertion and removal.
+* Tested operations with integers, characters, floating-point values, and strings.
+* Verified that resizing preserved all existing elements correctly.
+
+**Outcome:**
+Successfully implemented the primary DynamicArray modification operations:
+
+* `append()`
+* `insert()`
+* `remove()`
+* `resize()`
+
+The DynamicArray now supports dynamic growth, insertion at arbitrary positions, element removal, and automatic capacity expansion. The resizing strategy doubles the capacity when the array becomes full, providing amortized O(1) append performance while maintaining contiguous memory storage.
 
 ---
