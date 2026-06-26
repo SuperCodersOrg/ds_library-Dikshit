@@ -183,6 +183,97 @@ T LinkedList<T>::get(int index) const
     return current->data;
 }
 
+//delete front
+template<typename T>
+void LinkedList<T>::deleteFront()
+{
+    if (head_ == nullptr)
+        throw std::out_of_range("List is empty");
+
+    Node* temp = head_;
+
+    if (head_ == tail_)
+    {
+        head_ = nullptr;
+        tail_ = nullptr;
+    }
+    else
+    {
+        head_ = head_->next;
+        head_->prev = nullptr;
+    }
+
+    delete temp;
+    size_--;
+}
+
+// delete back
+template<typename T>
+void LinkedList<T>::deleteBack()
+{
+    if (tail_ == nullptr)
+        throw std::out_of_range("List is empty");
+
+    Node* temp = tail_;
+
+    if (head_ == tail_)
+    {
+        head_ = nullptr;
+        tail_ = nullptr;
+    }
+    else
+    {
+        tail_ = tail_->prev;
+        tail_->next = nullptr;
+    }
+
+    delete temp;
+    size_--;
+}
+
+//remove
+template<typename T>
+void LinkedList<T>::remove(int index)
+{
+    if (index < 0 || index >= size_)
+        throw std::out_of_range("Index out of range");
+
+    if (index == 0)
+    {
+        deleteFront();
+        return;
+    }
+
+    if (index == size_ - 1)
+    {
+        deleteBack();
+        return;
+    }
+
+    Node* current;
+
+    if (index < size_ / 2)
+    {
+        current = head_;
+
+        for (int i = 0; i < index; i++)
+            current = current->next;
+    }
+    else
+    {
+        current = tail_;
+
+        for (int i = size_ - 1; i > index; i--)
+            current = current->prev;
+    }
+
+    current->prev->next = current->next;
+    current->next->prev = current->prev;
+
+    delete current;
+    size_--;
+}
+
 //clear
 template<typename T>
 void LinkedList<T>::clear()

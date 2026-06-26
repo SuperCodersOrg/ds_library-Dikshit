@@ -35,6 +35,11 @@ public:
     void insertBack(T value);
     void insert(int index, T value);
 
+     // deletion
+    void deleteFront();
+    void deleteBack();
+    void remove(int index);
+    
     //get
     T get(int index) const;
 
