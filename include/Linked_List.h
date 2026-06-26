@@ -31,7 +31,12 @@ public:
     LinkedList& operator=(const LinkedList& other);
 
     // insertion
+    void insertFront(T value);
     void insertBack(T value);
+    void insert(int index, T value);
+
+    //get
+    T get(int index) const;
 
     // capacity
     int size() const;

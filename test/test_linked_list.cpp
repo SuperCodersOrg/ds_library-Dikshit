@@ -1,47 +1,71 @@
 #include <iostream>
-#include <string>
 #include "Linked_List.h"
+
 
 int main()
 {
-    std::cout << " Default Constructor \n";
+    LinkedList<int> list;
 
-    LinkedList<int> list1;
+    std::cout << " insertFront() \n";
+    list.insertFront(20);
+    list.insertFront(10);
 
-    std::cout << "Size : " << list1.size() << '\n';
-    std::cout << "Empty: " << std::boolalpha << list1.empty() << "\n\n";
-
-
-    std::cout << " Copy Constructor \n";
-
-    LinkedList<int> list2(list1);
-
-    std::cout << "Original Size : " << list1.size() << '\n';
-    std::cout << "Copied Size   : " << list2.size() << '\n';
-    std::cout << "Copied Empty  : " << list2.empty() << "\n\n";
+    for (int i = 0; i < list.size(); i++)
+        std::cout << list.get(i) << " ";
+    std::cout << "\n\n";
 
 
-    std::cout << "Copy Assignment\n";
-
-    LinkedList<int> list3;
-
-    list3 = list1;
-
-    std::cout <<"Assigned Size: " << list3.size() << '\n';
-    std::cout <<"Assigned Empty: " << list3.empty() << "\n\n";
+    std::cout << " insertBack() \n";
+    list.insertBack(30);
+    list.insertBack(40);
 
 
-    std::cout << "Self Assignment\n";
-
-    list3 = list3;
-
-    std::cout << "Self Assignment Successful\n";
-    std::cout << "Size : " << list3.size() << '\n';
-    std::cout << "Empty: " << list3.empty() << "\n\n";
+    
+    for (int i = 0; i < list.size(); i++)
+        std::cout << list.get(i) << " ";
+    std::cout << "\n\n";
 
 
-    std::cout << " Destructor \n";
-    std::cout << "Objects will be destroyed automatically at program exit.\n";
+    std::cout << " insert(index, value) \n";
+
+    list.insert(2, 25);
+
+    for (int i = 0; i < list.size(); i++)
+        std::cout << list.get(i) << " ";
+
+    std::cout << "\n\n";
+
+
+    std::cout << " insert at beginning \n";
+
+    list.insert(0, 5);
+
+    for (int i = 0; i < list.size(); i++)
+        std::cout << list.get(i) << " ";
+
+    std::cout << "\n\n";
+
+
+    std::cout << " insert at end \n";
+
+    list.insert(list.size(), 50);
+
+    for (int i = 0; i < list.size(); i++)
+        std::cout << list.get(i) << " ";
+
+    std::cout << "\n\n";
+
+
+    std::cout << " Invalid Index \n";
+
+    try
+    {
+        list.insert(100, 99);
+    }
+    catch (const std::out_of_range& e)
+    {
+        std::cout << e.what() << '\n';
+    }
 
     return 0;
 }
